@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የእግር ኳስ ጨዋታ ትንተና እና ግምት (Football Match Analytics)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body class="bg-slate-900 text-white font-sans min-h-screen">
+
+    <!-- Header / Navbar -->
+    <header class="bg-slate-800 border-b border-slate-700 p-4 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold text-emerald-400 flex items-center gap-2">
+                <i class="fa-solid fa-futbol"></i> የኳስ ትንተና (Match Analytics)
+            </h1>
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 px-3 py-1 rounded-full font-semibold border border-emerald-500/30">
+                PRO AI Analyzer
+            </span>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-6xl mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+        <!-- Input Form Section (Left Column) -->
+        <section class="lg:col-span-1 bg-slate-800 p-5 rounded-2xl border border-slate-700 shadow-xl h-fit">
+            <h2 class="text-lg font-semibold border-b border-slate-700 pb-3 mb-4 text-slate-200">
+                የቡድኖች መረጃ ማስገቢያ
+            </h2>
+
+            <form id="matchForm" class="space-y-4">
+                <!-- Home Team Input -->
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">አስተናጋጅ ቡድን (Home Team)</label>
+                    <input type="text" id="homeTeam" placeholder="ለምሳሌ፡ አርሰናል" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <!-- Away Team Input -->
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">እንግዳ ቡድን (Away Team)</label>
+                    <input type="text" id="awayTeam" placeholder="ለምሳሌ፡ ቼልሲ" required
+                        class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500">
+                </div>
+
+                <!-- Home Team Form -->
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">የአስተናጋጅ ቡድን የመጨረሻ 5 ጨዋታዎች</label>
+                    <select id="homeForm" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500">
+                        <option value="5">5 ሙሉ በሙሉ ማሸነፍ (WWWWW)</option>
+                        <option value="4">በጣም ጥሩ (WWWDW)</option>
+                        <option value="3" selected>መካከለኛ (WLDWL)</option>
+                        <option value="2">ደካማ (LLDWL)</option>
+                        <option value="1">በጣም ደካማ (LLLLL)</option>
+                    </select>
+                </div>
+
+                <!-- Away Team Form -->
+                <div>
+                    <label class="block text-sm text-slate-400 mb-1">የእንግዳ ቡድን የመጨረሻ 5 ጨዋታዎች</label>
+                    <select id="awayForm" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-white focus:outline-none focus:border-emerald-500">
+                        <option value="5">5 ሙሉ በሙሉ ማሸነፍ (WWWWW)</option>
+                        <option value="4">በጣም ጥሩ (WWWDW)</option>
+                        <option value="3" selected>መካከለኛ (WLDWL)</option>
+                        <option value="2">ደካማ (LLDWL)</option>
+                        <option value="1">በጣም ደካማ (LLLLL)</option>
+                    </select>
+                </div>
+
+                <!-- Key Players Status -->
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">አስተናጋጅ ጉዳት/ቅጣት</label>
+                        <select id="homeInjuries" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white">
+                            <option value="0">ምንም የለም</option>
+                            <option value="1">1 ተጫዋች</option>
+                            <option value="2">ዋና ተጫዋቾች አሉ</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs text-slate-400 mb-1">እንግዳ ጉዳት/ቅጣት</label>
+                        <select id="awayInjuries" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white">
+                            <option value="0">ምንም የለም</option>
+                            <option value="1">1 ተጫዋች</option>
+                            <option value="2">ዋና ተጫዋቾች አሉ</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" 
+                    class="w-full bg-emerald-500 hover:bg-emerald-600 transition font-bold py-3 rounded-xl text-slate-900 mt-2 flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-chart-line"></i> ጨዋታውን ተንትን
+                </button>
+            </form>
+        </section>
+
+        <!-- Analysis Results Section (Right Column) -->
+        <section class="lg:col-span-2 space-y-6">
+            
+            <!-- Match Header Card -->
+            <div id="resultCard" class="bg-slate-800 p-6 rounded-2xl border border-slate-700 text-center shadow-xl">
+                <p class="text-slate-400 text-sm mb-2">የጨዋታው ትንተና ውጤት</p>
+                <div class="flex items-center justify-between my-4">
+                    <div class="w-1/3">
+                        <h3 id="displayHome" class="text-xl md:text-2xl font-bold text-emerald-400">አስተናጋጅ</h3>
+                        <span class="text-xs text-slate-400">Home</span>
+                    </div>
+                    <div class="text-2xl font-extrabold text-slate-500">VS</div>
+                    <div class="w-1/3">
+                        <h3 id="displayAway" class="text-xl md:text-2xl font-bold text-sky-400">እንግዳ</h3>
+                        <span class="text-xs text-slate-400">Away</span>
+                    </div>
+                </div>
+
+                <!-- Win Probability Bar -->
+                <div class="mt-6">
+                    <div class="flex justify-between text-xs font-semibold mb-1">
+                        <span id="homeWinPercent" class="text-emerald-400">50%</span>
+                        <span id="drawPercent" class="text-amber-400">እኩል (25%)</span>
+                        <span id="awayWinPercent" class="text-sky-400">25%</span>
+                    </div>
+                    <div class="w-full h-4 bg-slate-900 rounded-full overflow-hidden flex">
+                        <div id="homeBar" class="bg-emerald-500 h-full transition-all duration-500" style="width: 50%"></div>
+                        <div id="drawBar" class="bg-amber-500 h-full transition-all duration-500" style="width: 25%"></div>
+                        <div id="awayBar" class="bg-sky-500 h-full transition-all duration-500" style="width: 25%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Breakdown Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Tactical Overview -->
+                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                    <h4 class="text-emerald-400 font-semibold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-list"></i> የታክቲክ ግምት
+                    </h4>
+                    <p id="tacticalAnalysis" class="text-slate-300 text-sm leading-relaxed">
+                        እባክዎ የሁለቱን ቡድኖች ስም እና መረጃ በማስገባት "ጨዋታውን ተንትን" የሚለውን ይጫኑ።
+                    </p>
+                </div>
+
+                <!-- Prediction & Betting Tip -->
+                <div class="bg-slate-800 p-5 rounded-2xl border border-slate-700">
+                    <h4 class="text-amber-400 font-semibold mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> ግምት (Prediction)
+                    </h4>
+                    <div id="predictionTips" class="space-y-2 text-sm text-slate-300">
+                        <p>• የመጨረሻ ውጤት ግምት፡ <span class="font-bold text-white" id="scorePred">-</span></p>
+                        <p>• የጎል ብዛት (Over/Under)፡ <span class="font-bold text-white" id="goalsPred">-</span></p>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- JavaScript Logic -->
+    <script>
+        document.getElementById('matchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get inputs
+            const home = document.getElementById('homeTeam').value || 'አስተናጋጅ';
+            const away = document.getElementById('awayTeam').value || 'እንግዳ';
+            const homeFormVal = parseInt(document.getElementById('homeForm').value);
+            const awayFormVal = parseInt(document.getElementById('awayForm').value);
+            const homeInjuries = parseInt(document.getElementById('homeInjuries').value);
+            const awayInjuries = parseInt(document.getElementById('awayInjuries').value);
+
+            // Calculate Base Scores (Home Advantage = +1.5)
+            let homeScore = (homeFormVal * 1.5) + 1.5 - (homeInjuries * 1.2);
+            let awayScore = (awayFormVal * 1.5) - (awayInjuries * 1.2);
+
+            if (homeScore < 1) homeScore = 1;
+            if (awayScore < 1) awayScore = 1;
+
+            const total = homeScore + awayScore + 2; // +2 for draw margin
+
+            // Percentages
+            let homeWin = Math.round((homeScore / total) * 100);
+            let awayWin = Math.round((awayScore / total) * 100);
+            let draw = 100 - (homeWin + awayWin);
+
+            // Update UI
+            document.getElementById('displayHome').textContent = home;
+            document.getElementById('displayAway').textContent = away;
+
+            document.getElementById('homeWinPercent').textContent = `${homeWin}%`;
+            document.getElementById('drawPercent').textContent = `እኩል (${draw}%)`;
+            document.getElementById('awayWinPercent').textContent = `${awayWin}%`;
+
+            document.getElementById('homeBar').style.width = `${homeWin}%`;
+            document.getElementById('drawBar').style.width = `${draw}%`;
+            document.getElementById('awayBar').style.width = `${awayWin}%`;
+
+            // Tactical analysis text generation
+            let analysis = "";
+            if (homeWin > awayWin + 20) {
+                analysis = `${home} የሜዳው የበላይነት እና የተሻለ አቋም ስላለው ጨዋታውን በከፍተኛ ፕሬስ የመቆጣጠር ዕድሉ ከፍተኛ ነው። ${away} በመልሶ ማጥቃት ሊጫወት ይችላል።`;
+            } else if (awayWin > homeWin + 20) {
+                analysis = `${away} ምንም እንኳን ከሜዳው ውጪ ቢሆንም ባለው አሁናዊ አቋም የተሻለ የኳስ ቁጥጥር ይኖረዋል ተብሎ ይጠበቃል።`;
+            } else {
+                analysis = `ሁለቱም ቡድኖች ተመጣጣኝ አቋም ስላላቸው በጣም ተቀራራቢ እና ጥንቃቄ የተሞላበት ጨዋታ ይሆናል።`;
+            }
+            document.getElementById('tacticalAnalysis').textContent = analysis;
+
+            // Score Prediction
+            let estHomeGoals = Math.round((homeWin / 100) * 3);
+            let estAwayGoals = Math.round((awayWin / 100) * 3);
+            document.getElementById('scorePred').textContent = `${estHomeGoals} - ${estAwayGoals}`;
+            document.getElementById('goalsPred').textContent = (estHomeGoals + estAwayGoals > 2) ? "ከ 2.5 ጎል በላይ (Over 2.5)" : "ከ 2.5 ጎል በታች (Under 2.5)";
+        });
+    </script>
+</body>
+</html>
