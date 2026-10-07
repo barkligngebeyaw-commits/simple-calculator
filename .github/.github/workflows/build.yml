@@ -1,0 +1,23 @@
+name: Build C++ Calculator Executable
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Compile C++ to EXE
+      run: |
+        g++ main.cpp -o Calculator.exe
+
+    - name: Upload Executable
+      uses: actions/upload-artifact@v4
+      with:
+        name: Calculator-Windows-App
+        path: Calculator.exe
